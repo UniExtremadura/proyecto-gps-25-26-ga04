@@ -21,6 +21,7 @@ import { styled, SvgIcon } from '@mui/material';
 import ForgotPassword from './ForgotPassword.jsx';
 import AppTheme from '../themes/AuthTheme/AuthTheme.jsx';
 
+// tarea GA04-16-H5.1 legada
 export function GoogleIcon() {
   return (
     <SvgIcon>
