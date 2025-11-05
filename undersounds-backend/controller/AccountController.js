@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 
 //Tarea GA04-41 H20.1.1 legada (subtarea)
+//Tarea GA04-41 H20.1.2 legada (subtarea)
 
 // Importaciones corregidas con nombres exactos
 const ArtistDAO = require('../model/dao/ArtistDAO');
