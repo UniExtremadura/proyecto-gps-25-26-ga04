@@ -16,9 +16,15 @@ const { exec, spawn } = require('child_process');
 const readline = require('readline');
 const Stripe = require('stripe');
 
+// Tarea GA04-65 H9.2.1 Inicio de checkout con Stripe cliente Legada
+//Tarea GA04-12-H9.2-Inicio-de-checkout-con-Stripe-cliente- legada parte 2
+
 mongoose.set('strictQuery', false);
 // Tarea GA04-49-H23.1.2 legada
 const app = express();
+
+// Tarea GA04-14 H9.3 Webhook Stripe creación de pedido legada
+// Tarea GA04-14-H9.3-Webhook-Stripe-creación-de-pedido parte 2 legada
 
 // CORS: orígenes configurables por env (comma-separated). Fallback a http://localhost:3000
 const rawOrigins = process.env.CORS_ORIGINS || 'http://localhost:3000';
