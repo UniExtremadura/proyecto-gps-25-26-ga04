@@ -43,6 +43,8 @@ class AlbumController {
     }
   }
 
+  //Tarea GA04-11-H9.1-CRUD-de-carrito legada
+
   async getAlbumById(req, res) {
     try {
       const { id } = req.params;
