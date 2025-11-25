@@ -7,6 +7,7 @@ import { getNews } from '../services/newsService';
 import { AlbumContext } from '../context/AlbumContext';
 import { AuthContext } from '../context/AuthContext';
 import { fetchAlbums } from '../services/jamendoService';
+import TrendingSection from '../components/Stats/TrendingSection'; 
 
 const HomePage = () => {
   const [news, setNews] = useState([]);
@@ -41,7 +42,7 @@ const HomePage = () => {
   useEffect(() => {
     const loadArtists = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/artists');
+        const response = await axios.get('http://localhost:5001/api/artists');
         setArtists(response.data.results || response.data);
       } catch (error) {
         console.error('Error fetching artists:', error);
@@ -337,7 +338,6 @@ const HomePage = () => {
           </div>
         </div>
       </Box>
-
 {/* Sección de Artistas */}
 <Box className="envoltorio">
   <div className="featured-section">
