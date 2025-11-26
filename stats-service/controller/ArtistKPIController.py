@@ -120,6 +120,7 @@ async def notify_artist_alert(artist_id: str, window_minutes: int = 60, threshol
         "email": {"recipient": recipient, "sent": sent, "error": send_error}
     }
 
+# Tarea GA04-51-H24.1-Integrar-circuit-breaker-en-llamadas-externas legada
 
 @router.post("/stats/alerts")
 async def create_alert(payload: Dict[str, Any]):
