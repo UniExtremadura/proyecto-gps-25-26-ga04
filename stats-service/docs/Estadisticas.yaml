@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: UnderSounds — Estadísticas y Recomendaciones
   version: "1.0.0"
-  description: "Endpoints reales expuestos por `stats-service`."
+  description: "Endpoints expuestos por `stats-service`."
 servers:
   - url: http://localhost:5002/api
 
@@ -72,48 +72,6 @@ paths:
         "404":
           description: Artista no encontrado
 
-  /stats/top:
-    get:
-      summary: Rankings simples por tipo
-      parameters:
-        - in: query
-          name: type
-          required: true
-          schema:
-            type: string
-            enum: [track, album, artist]
-        - in: query
-          name: period
-          schema:
-            type: string
-            enum: [day, week, month, year]
-            default: week
-        - in: query
-          name: limit
-          schema:
-            type: integer
-            default: 10
-      responses:
-        "200":
-          description: Lista ordenada por métricas agregadas
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                    type:
-                      type: string
-                      enum: [track, album, artist]
-                    title:
-                      type: string
-                      nullable: true
-                    metricValue:
-                      type: number
-
   /stats/trending:
     get:
       summary: Tendencias por género o global (heurística)
@@ -138,46 +96,6 @@ paths:
         "200":
           description: Lista de tendencias (tracks o artists según `genre`)
           content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-
-  /stats/export:
-    get:
-      summary: Exportar métricas (CSV o JSON)
-      parameters:
-        - in: query
-          name: type
-          schema:
-            type: string
-            enum: [plays, likes, follows, purchases]
-            default: plays
-        - in: query
-          name: startDate
-          schema:
-            type: string
-            format: date
-        - in: query
-          name: endDate
-          schema:
-            type: string
-            format: date
-        - in: query
-          name: format
-          schema:
-            type: string
-            enum: [csv, json]
-            default: csv
-      responses:
-        "200":
-          description: Archivo con métricas (CSV o JSON)
-          content:
-            text/csv:
-              schema:
-                type: string
-                format: binary
             application/json:
               schema:
                 type: array
@@ -262,6 +180,34 @@ paths:
             application/json:
               schema:
                 type: object
+                properties:
+                  state:
+                    type: string
+                    description: "Nombre del estado del circuit breaker (ej: Closed, Open, HalfOpen)."
+                    example: "Closed"
+                  fail_count:
+                    description: "Contador de fallos acumulados (puede ser integer o string según la implementación)."
+                    oneOf:
+                      - type: integer
+                      - type: string
+                    example: 0
+                  fail_max:
+                    type: integer
+                    description: "Número de fallos necesarios para abrir el circuito."
+                    example: 5
+                  reset_timeout:
+                    description: "Timeout de reset en segundos (puede venir como entero o representación interna)."
+                    oneOf:
+                      - type: integer
+                      - type: string
+                    example: 30
+                  opened_at:
+                    type: string
+                    nullable: true
+                    description: "Timestamp ISO de apertura del circuito o null."
+                    example: "2025-11-27T12:34:56.789000"
+        "500":
+          description: Error interno
 
   /recommendations/user/{user_id}:
     get:

@@ -218,7 +218,7 @@ process.on('SIGINT', () => {
   rl.question("¿Desea respaldar los datos con mongoexport? (S/N): ", (answer) => {
     if (answer.trim().toUpperCase() === "S") {
       process.stdout.write('Ejecutando mongoexport para respaldar datos...\n');
-      const child = spawn('node', ['export-db.js'], { stdio: 'inherit' });
+      const child = spawn('node', ['export-db.mjs'], { stdio: 'inherit' });
       child.on('exit', (code) => {
         process.stdout.write(`Exportación de datos completada con código ${code}\n`);
         const newVersion = CURRENT_DB_VERSION + 1;

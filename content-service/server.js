@@ -22,8 +22,6 @@ const { generalLimiter, checkoutLimiter } = require('./middleware/rateLimit');
 
 mongoose.set('strictQuery', false);
 
-//Tarea GA04-52-H24.2-Pruebas-unitarias-de-test-para-Estadísticas legada
-
 const app = express();
 
 app.use(compression());
@@ -181,7 +179,7 @@ process.on('SIGINT', () => {
   rl.question("¿Desea respaldar los datos con mongoexport? (S/N): ", (answer) => {
     if (answer.trim().toUpperCase() === "S") {
       process.stdout.write('Ejecutando mongoexport para respaldar datos...\n');
-      const child = spawn('node', ['export-db.js'], { stdio: 'inherit' });
+      const child = spawn('node', ['export-db.mjs'], { stdio: 'inherit' });
       child.on('exit', (code) => {
         process.stdout.write(`Exportación de datos completada con código ${code}\n`);
         const newVersion = CURRENT_DB_VERSION + 1;

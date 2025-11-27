@@ -298,7 +298,7 @@ async def openapi_yaml():
     return {"detail": "OpenAPI YAML not found"}, 404
 
 # Serve Swagger UI pointing to the YAML above
-@app.get("/api/docs", include_in_schema=False)
+@app.get("/api-docs", include_in_schema=False)
 async def swagger_ui():
     return get_swagger_ui_html(openapi_url="/api/openapi.yaml", title="UnderSounds — Estadísticas — Swagger UI")
 

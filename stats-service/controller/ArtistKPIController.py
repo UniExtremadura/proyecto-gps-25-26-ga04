@@ -471,7 +471,7 @@ async def _fetch_albums_by_genres(genres: list, limit: int) -> list:
 
             # Intentar resolver como álbum
             try:
-                resp = await http_get_with_cb(client, f"{CONTENT_SERVICE_URL}/albums?genre={g}&limit={limit}", timeout=5)
+                resp = await http_get_with_cb(client, f"{CONTENT_SERVICE_URL}/api/albums?genre={g}&limit={limit}", timeout=5)
                 if resp.status_code == 200:
                     for it in resp.json()[:limit]:
                         results.append({"id": it.get("_id") or it.get("id"), "type": "album", "reason": f"genre:{g}", "score": 1.0})
